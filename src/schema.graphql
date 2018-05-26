@@ -1,0 +1,22 @@
+type Query {
+  description: String!
+  author: String!
+  address: String!
+  owner: String!
+  events: [Event!]!
+}
+
+type Event {
+  address: String
+  topics: [String]
+  data: String
+  blockNumber: String
+  transactionHash: String
+  blockHash: String
+  logIndex: String
+  removed: Boolean
+}
+
+schema {
+  query: Query
+}
