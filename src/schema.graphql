@@ -3,18 +3,33 @@ type Query {
   author: String!
   address: String!
   owner: String!
-  events: [Event!]!
+  events: [Event]!
 }
 
 type Event {
-  address: String
-  topics: [String]
-  data: String
-  blockNumber: String
-  transactionHash: String
-  blockHash: String
-  logIndex: String
+  name: String!
+  address: String!
+  returned: [ReturnValue!]!
+  logIndex: Int!
+  transactionHash: String!
+  blockHash: String!
+  blockNumber: Int!
   removed: Boolean
+}
+
+# change this
+input Filter {
+  name: String
+  row: Int
+  column: String
+  value: String
+}
+
+#change this
+type ReturnValue {
+  row: Int!
+  column: String!
+  value: String!
 }
 
 schema {

@@ -1,6 +1,6 @@
-const address = "0xb37089817bb126a897a96d94a2833a4ebbcfad12"; // Rinkeby contract address
+const address = "0xb37089817bb126a897a96d94a2833a4ebbcfad12"; // Rinkeby contract address change this
 const ABI = [
-  // ABI from Pragma, withpragma.com
+  // ABI from Pragma, withpragma.com change this
    {
       "constant":false,
       "inputs":[
