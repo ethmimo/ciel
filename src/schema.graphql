@@ -3,23 +3,24 @@ type Query {
   author: String!
   address: String!
   owner: String!
-  events: [Event]!
+  event(row: Int): Event
+  events: [Event]
 }
 
 type Event {
-  name: String!
-  address: String!
-  returned: [ReturnValue!]!
-  logIndex: Int!
-  transactionHash: String!
-  blockHash: String!
-  blockNumber: Int!
-  removed: Boolean
+  event: String
+  signature: String
+  address: String
+  returnValues: ReturnValue
+  logIndex: Int
+  transactionIndex: Int
+  transactionHash: String
+  blockHash: String
+  blockNumber: Int
 }
 
 # change this
 input Filter {
-  name: String
   row: Int
   column: String
   value: String
@@ -27,9 +28,9 @@ input Filter {
 
 #change this
 type ReturnValue {
-  row: Int!
-  column: String!
-  value: String!
+  _row: Int!
+  _column: String!
+  _value: String!
 }
 
 schema {

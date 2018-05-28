@@ -1,6 +1,5 @@
-const address = "0xb37089817bb126a897a96d94a2833a4ebbcfad12"; // Rinkeby contract address change this
+const address = '0x3270360EDE054CbA2eF829af1e124c4D6e0f8a60'; // Mainnet contract address change this
 const ABI = [
-  // ABI from Pragma, withpragma.com change this
    {
       "constant":false,
       "inputs":[
@@ -73,12 +72,12 @@ const ABI = [
          {
             "indexed":true,
             "name":"_column",
-            "type":"string"
+            "type":"bytes32"
          },
          {
             "indexed":true,
             "name":"_value",
-            "type":"string"
+            "type":"bytes32"
          }
       ],
       "name":"Table",

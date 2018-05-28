@@ -12,13 +12,13 @@ contract Database {
     }
 
     function withdraw() public {
-        require(msg.sender == owner, "You are not the owner of this contract");
+        require(msg.sender == owner);
         owner.transfer(address(this).balance);
     }
 
     // Here the 'Table' event is treated as an SQL table
     // Each property is indexed and can be retrieved easily via web3.js
-    event Table(uint256 indexed _row, string indexed _column, string indexed _value);
+    event Table(uint256 indexed _row, bytes32 indexed _column, bytes32 indexed _value);
     /*
     _______
     |||Table|||
@@ -30,6 +30,6 @@ contract Database {
     */
 
     function put(uint256 _row, string _column, string _value) public {
-        emit Table(_row, _column, _value);
+        emit Table(_row, keccak256(_column), keccak256(_value));
     }
 }

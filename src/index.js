@@ -1,6 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga');
 const { address } = require("../constants/database.js");
-const { getOwner, pastEvents } = require("./eth.js");
+const { getOwner, pastEvents, filteredEvents } = require("./eth.js");
 
 const resolvers = {
   Query: {
@@ -8,7 +8,8 @@ const resolvers = {
     author: () => 'Ghilia Weldesselasie | @ghiliweld on all social networks',
     address: () => address,
     owner: () => getOwner(),
-    events: () => pastEvents() // having problems with this
+    event: (args) => filteredEvents(args.row), // not complete
+    events: () => pastEvents()
   }
 }
 
