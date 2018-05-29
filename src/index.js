@@ -1,6 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga');
 const { address } = require("../constants/database.js");
-const { getOwner, pastEvents, filteredEvents } = require("./eth.js");
+const { getOwner, pastEvents, filteredEvents, latestEvent, latestFilteredEvent } = require("./eth.js");
 
 const resolvers = {
   Query: {
@@ -8,8 +8,26 @@ const resolvers = {
     author: () => 'Ghilia Weldesselasie | @ghiliweld on all social networks',
     address: () => address,
     owner: () => getOwner(),
-    event: (args) => filteredEvents(args.row), // not complete
-    events: () => pastEvents()
+    event: (_, { row }) => filteredEvents(row),
+    events: () => pastEvents(),
+    latest: () => latestEvent(),
+    latestFiltered: (_, { row }) => latestFilteredEvent(row)
+  },
+  Event: {
+    event: (root) => root.event,
+    signature: (root) => root.signature,
+    address: (root) => root.address,
+    returnValues: (root) => root.returnValues,
+    logIndex: (root) => root.logIndex,
+    transactionIndex: (root) => root.transactionIndex,
+    transactionHash: (root) => root.transactionHash,
+    blockHash: (root) => root.blockHash,
+    blockNumber: (root) => root.blockNumber
+  },
+  ReturnValue: {
+    _row: (root) => root._row,
+    _column: (root) => root._column,
+    _value: (root) => root._value
   }
 }
 

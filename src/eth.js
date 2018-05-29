@@ -4,7 +4,8 @@ const { address, ABI } = require("../constants/database.js");
 const infura = new Web3(new Web3.providers.HttpProvider('ENDPOINT'));
 const contract = new infura.eth.Contract(ABI, address);
 
-const keccak = (element) => infura.utils.soliditySha3(element) // function that keccak256 hashes elements like in Solidity
+// function that keccak256 hashes elements like in Solidity, may use it in near future
+const keccak = (element) => infura.utils.soliditySha3(element)
 
 const getOwner = () => contract.methods.owner().call();
 const pastEvents = () => contract.getPastEvents('Table', {
@@ -23,4 +24,8 @@ const filteredEvents = (row) => contract.getPastEvents('Table', {
   console.log(error);
 });
 
-module.exports = { contract, getOwner, pastEvents, filteredEvents };
+const latestEvent = () => pastEvents().then(events => events.pop())
+
+const latestFilteredEvent = (row) => filteredEvents(row).then(events => events.pop())
+
+module.exports = { contract, getOwner, pastEvents, filteredEvents, latestEvent, latestFilteredEvent };

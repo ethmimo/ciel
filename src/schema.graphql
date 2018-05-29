@@ -3,8 +3,10 @@ type Query {
   author: String!
   address: String!
   owner: String!
-  event(row: Int): Event
+  event(row: Int): [Event]
   events: [Event]
+  latest: Event
+  latestFiltered(row: Int): Event
 }
 
 type Event {
